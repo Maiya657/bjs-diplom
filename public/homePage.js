@@ -2,7 +2,7 @@
 
 const logoutButton = new LogoutButton();
 
-logoutButton.action = function() {
+logoutButton.action = () => {
 	ApiConnector.logout((logoutResponse) => {
 		if (logoutResponse.success === true) {
 			location.reload();
@@ -16,7 +16,7 @@ ApiConnector.current((currentResponse) => {
 	}
 });
 
-function getCurrencyRates() {
+const getCurrencyRates = () => {
 	const ratesBoard = new RatesBoard();
 	ApiConnector.getStocks((ratesResponse) => {
 		if (ratesResponse.success) {
@@ -34,7 +34,7 @@ setInterval(() => {
 
 const moneyManager = new MoneyManager();
 
-moneyManager.addMoneyCallback = function(data) {
+moneyManager.addMoneyCallback = (data) => {
 	ApiConnector.addMoney(data, (addMoneyResponse) => {
 		if (addMoneyResponse.success) {
 			ProfileWidget.showProfile(addMoneyResponse.data);
@@ -45,7 +45,7 @@ moneyManager.addMoneyCallback = function(data) {
 	});
 }
 
-moneyManager.conversionMoneyCallback = function(data) {
+moneyManager.conversionMoneyCallback = (data) => {
 	ApiConnector.convertMoney(data, (convertMoneyResponse) => {
 		if (convertMoneyResponse.success) {
 			ProfileWidget.showProfile(convertMoneyResponse.data);
@@ -56,7 +56,7 @@ moneyManager.conversionMoneyCallback = function(data) {
 	});
 }
 
-moneyManager.sendMoneyCallback = function(data) {
+moneyManager.sendMoneyCallback = (data) => {
 	ApiConnector.transferMoney(data, (sendMoneyResponse) => {
 		if (sendMoneyResponse.success) {
 			ProfileWidget.showProfile(sendMoneyResponse.data);
@@ -77,7 +77,7 @@ ApiConnector.getFavorites((favoritesResponse) => {
 	}
 });
 
-favoritesWidget.addUserCallback = function(data) {
+favoritesWidget.addUserCallback = (data) => {
 	ApiConnector.addUserToFavorites(data, (addUserResponse) => {
 		if (addUserResponse.success) {
 			favoritesWidget.clearTable();
@@ -90,7 +90,7 @@ favoritesWidget.addUserCallback = function(data) {
 	});
 }
 
-favoritesWidget.removeUserCallback = function(data) {
+favoritesWidget.removeUserCallback = (data) => {
 	ApiConnector.removeUserFromFavorites(data, (removeUserResponse) => {
 		if (removeUserResponse.success) {
 			favoritesWidget.clearTable();

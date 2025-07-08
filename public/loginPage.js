@@ -2,22 +2,22 @@
 
 const userForm = new UserForm();
 
-userForm.loginFormCallback = function(data) {
+userForm.loginFormCallback = (data) => {
 	ApiConnector.login(data, (returnData) => {
 		if (returnData.success === true) {
 			location.reload();
 		} else {
-			this.setLoginErrorMessage(returnData.error);
+			userForm.setLoginErrorMessage(returnData.error);
 		}
 	});
 }
 
-userForm.registerFormCallback = function(data) {
+userForm.registerFormCallback = (data) => {
 	ApiConnector.register(data, (returnData) => {
 		if (returnData.success === true) {
 			location.reload();
 		} else {
-			this.setRegisterErrorMessage(returnData.error);
+			userForm.setRegisterErrorMessage(returnData.error);
 		}
 	});
 }
